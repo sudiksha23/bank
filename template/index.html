@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}login
+{% endblock title %}
+
+
+
+{% block body %}
+<header>
+    <nav id="header-nav" class="navbar navbar-default">
+        <div class="navbar-header">
+        
+            <div class="navbar-brand">
+                <a href="/index">
+                    <h2>Seach branch</h2>
+                </a>
+            </div>
+        
+    </div>
+    </nav>
+</header>
+
+     <div class="row">
+
+         <div class="col-md-6" style="background-color:rgb(179, 216, 216); opacity: 0.7; height: auto; left: 100px; width: 650px; padding-top: 10px;">
+        <div style="height: 100px; background-color: black; width: 400px; height: 120px; padding-top: 4px; padding-left: 18px; 
+        padding-bottom: 8px; border-radius: 5px;">
+        <form action="searchtable1" method="post">
+          {% csrf_token %}
+          <h4 style="color: #ffffff"><b>Search according to IFSC code</b></h4>
+          
+            <label for="u">IFSC Code</label>
+            <input type="text" placeholder="Enter Username" name="u" style="color:black;" required>
+            <br>
+            <button type="submit" class="btn btn-success">Search</button>
+      
+        </form>
+      </div>
+            {% for i in set %}      
+            <br>
+            <p>Bank Name - {{i.bank_name}}</p>
+            <p>Address - {{i.address}} </p>
+            <p>Branch - {{i.branch}}<p>
+            <p>District - {{i.district}}</p>
+            <p>State - {{i.state}}<p>
+            <p>MICR Code - {{i.micr}}</p> 
+            <p> Contact - {{i.contact}}<p>    
+         {% endfor %}
+            </div>>     
+  
+
+         <div class="col-md-6" style="background-color:rgb(179, 216, 216); opacity: 0.7; height: auto; left: 150px; width: 650px; padding-top: 10px;">
+        <div style="height: 100px; background-color: black; width: 400px; height: 150px; padding-top: 4px; padding-left: 18px; 
+        padding-bottom: 8px; border-radius: 5px;">
+        <form action="searchtable2" method="post">
+          {% csrf_token %}
+          <h4 style="color: #ffffff"><b>Search according to City and  Bank Name</b></h4>
+          
+            <label for="c">District</label>
+            <input type="text" placeholder="Enter District" name="c" style="color:black;" required>
+            <br>
+            <label for="d">Bank Name</label>
+            <input type="text" placeholder="Enter Bank Name" name="d" style="color:black;" required>
+            <br>
+            <button type="submit" class="btn btn-success">Search</button>
+      
+        </form>
+      </div>
+            {% for i in set1 %}      
+        
+                             <br>
+                                 <p>Bank Name - {{i.bank_name}}</p>
+                                 <p>Address - {{i.address}} </p>
+                                 <p>Branch - {{i.branch}}<p>
+                                 <p>District - {{i.district}}</p>
+                                 <p>State - {{i.state}}<p>
+                                 <p>MICR Code - {{i.micr}}</p> 
+                                 <p> Contact - {{i.contact}}<p>      
+            {% endfor %}
+            </div>>     
+  
+
+
+{% endblock body %}
